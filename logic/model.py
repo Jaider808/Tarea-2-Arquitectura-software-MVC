@@ -49,13 +49,13 @@ class Person(object):
 
     @classmethod
     def delete_person(cls, id_person):
-        dic = dict()
         with open('../logic/db.json') as json_file:
             data = json.load(json_file)
-            index = 0
             for p in data['employees']:
                 if p['id_employee'] == id_person:
                     data['employees'].remove(p)
-                    print("Se borra: ", data)
-                    return
-                index += 1
+                    break
+            new_data = data
+        updated = json.dumps(new_data)
+        s = open('../logic/db.json', 'w')
+        s.write(updated)
