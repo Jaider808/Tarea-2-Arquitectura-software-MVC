@@ -1,3 +1,5 @@
+import json
+
 from flask_bootstrap import Bootstrap
 from flask import Flask, render_template, request
 from logic.model import Person
@@ -43,16 +45,16 @@ def person_detail():
 
 @app.route('/person_update/<id_person>')
 def person_update(id_person):
-    for person in model:
-        if person.id_person == id_person:
-            edit_person = person
-            return render_template('person_update.html', value=edit_person)
-    return render_template('404.html')
+    return render_template('person_update.html', value=Person.search_person(id_person))
 
 
 @app.route('/person_edit', methods=['POST'])
 def person_edit():
-    return render_template('person_detail.html', value='msg')
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+    id_employee = request.form['id_employee']
+    Person.update_person(id_employee, first_name, last_name)
+    return render_template('person_detail.html', value='Was update')
 
 
 @app.route('/person_delete/<id_person>', methods=['GET'])
