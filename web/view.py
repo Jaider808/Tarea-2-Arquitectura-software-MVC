@@ -35,12 +35,12 @@ def person():
 
 @app.route('/person_detail', methods=['POST'])
 def person_detail():
-    id_person = request.form['id_person']
+    id_employee = request.form['id_employee']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
-    p = Person(id_person=id_person, name=first_name, last_name=last_name)
-    model.append(p)
-    return render_template('person_detail.html', value=p)
+
+    Person.append_employee(id_employee, first_name, last_name)
+    return render_template('person_detail.html', value="Was append")
 
 
 @app.route('/person_update/<id_person>')

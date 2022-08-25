@@ -48,6 +48,29 @@ class Person(object):
         return result
 
     @classmethod
+    def search_person(cls, id_employee):
+        with open('../logic/db.json') as json_file:
+            data = json.load(json_file)
+            for p in data['employees']:
+                if p['id_employee'] == id_employee:
+                    return Person(p['first_name'], p['last_name'], p['id_employee'])
+
+    @classmethod
+    def update_person(cls, id_employe, name, last_name):
+        with open('../logic/db.json') as json_file:
+            data = json.load(json_file)
+            for p in data['employees']:
+                if p['id_employee'] == id_employe:
+                    p['first_name'] = name
+                    p['last_name'] = last_name
+                    break
+            new_data = data
+        updated = json.dumps(new_data, indent=4)
+        s = open('../logic/db.json')
+        s.write(updated)
+
+
+    @classmethod
     def delete_person(cls, id_person):
         with open('../logic/db.json') as json_file:
             data = json.load(json_file)
@@ -55,6 +78,16 @@ class Person(object):
                 if p['id_employee'] == id_person:
                     data['employees'].remove(p)
                     break
+            new_data = data
+        updated = json.dumps(new_data)
+        s = open('../logic/db.json', 'w')
+        s.write(updated)
+
+    @classmethod
+    def append_employee(cls, id_employee, name, last_name):
+        with open('../logic/db.json') as json_file:
+            data = json.load(json_file)
+            data['employees'].append({"first_name": name, "last_name": last_name, "id_employee": id_employee})
             new_data = data
         updated = json.dumps(new_data)
         s = open('../logic/db.json', 'w')
