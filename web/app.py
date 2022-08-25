@@ -20,6 +20,39 @@ def start():
     else:
         return view.end_view()
 
+@app.route("/")
+def index():
+    return view.set_index()
+
+
+@app.route('/person', methods=['GET'])
+def person():
+    return view.set_person()
+
+
+@app.route('/person_detail', methods=['POST'])
+def person_detail():
+    return view.get_person_detail()
+
+
+@app.route('/person_update/<id_person>')
+def person_update(id_person):
+    return view.set_person_update(id_person)
+
+
+@app.route('/person_edit', methods=['POST'])
+def person_edit():
+    return view.set_person_edit()
+
+@app.route('/person_delete/<id_person>', methods=['GET'])
+def person_delete(id_person):
+    return view.set_person_delete(id_person)
+
+
+@app.route('/people')
+def people():
+    return view.get_people()
+
 
 if __name__ == "__main__":
     # running controller function

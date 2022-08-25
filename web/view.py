@@ -21,18 +21,15 @@ def end_view():
     print('Goodbye!')
 
 
-@app.route("/")
-def index():
+def set_index():
     return render_template('index.html')
 
 
-@app.route('/person', methods=['GET'])
-def person():
+def set_person():
     return render_template('person.html')
 
 
-@app.route('/person_detail', methods=['POST'])
-def person_detail():
+def get_person_detail():
     id_employee = request.form['id_employee']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
@@ -41,13 +38,11 @@ def person_detail():
     return render_template('person_detail.html', value="Was append")
 
 
-@app.route('/person_update/<id_person>')
-def person_update(id_person):
+def set_person_update(id_person):
     return render_template('person_update.html', value=Person.search_person(id_person))
 
 
-@app.route('/person_edit', methods=['POST'])
-def person_edit():
+def set_person_edit():
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     id_employee = request.form['id_employee']
@@ -55,14 +50,12 @@ def person_edit():
     return render_template('person_detail.html', value='Was update')
 
 
-@app.route('/person_delete/<id_person>', methods=['GET'])
-def person_delete(id_person):
+def set_person_delete(id_person):
     Person.delete_person(id_person)
     return render_template('person_detail.html', value=id_person)
 
 
-@app.route('/people')
-def people():
+def get_people():
     # Unico ruta que se que funciona
     data = [(i.id_person, i.first_name, i.last_name) for i in Person.get_all()]
     print(data)
