@@ -57,6 +57,7 @@ def person_edit():
 
 @app.route('/person_delete/<id_person>', methods=['GET'])
 def person_delete(id_person):
+    Person.delete_person(id_person)
     return render_template('person_detail.html', value=id_person)
 
 
