@@ -53,22 +53,22 @@ class Person(object):
             data = json.load(json_file)
             for p in data['employees']:
                 if p['id_employee'] == id_employee:
+                    print(p['first_name'], p['last_name'], p['id_employee'])
                     return Person(p['first_name'], p['last_name'], p['id_employee'])
 
     @classmethod
-    def update_person(cls, id_employe, name, last_name):
+    def update_person(cls, id_employee, name, last_name):
         with open('../logic/db.json') as json_file:
             data = json.load(json_file)
             for p in data['employees']:
-                if p['id_employee'] == id_employe:
+                if p['id_employee'] == id_employee:
                     p['first_name'] = name
                     p['last_name'] = last_name
                     break
             new_data = data
         updated = json.dumps(new_data, indent=4)
-        s = open('../logic/db.json')
+        s = open('../logic/db.json', 'w')
         s.write(updated)
-
 
     @classmethod
     def delete_person(cls, id_person):

@@ -1,5 +1,3 @@
-import json
-
 from flask_bootstrap import Bootstrap
 from flask import Flask, render_template, request
 from logic.model import Person
