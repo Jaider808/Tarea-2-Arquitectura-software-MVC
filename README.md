@@ -1,2 +1,2 @@
 # Python Model–view–controller
-Python MVC
+## Trabajo hecho en pareja: Diego Quintana Fajardo y Jaider Castilla Babilonia - Python MVC
