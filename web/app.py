@@ -20,6 +20,7 @@ def start():
     else:
         return view.end_view()
 
+
 @app.route("/")
 def index():
     return view.set_index()
@@ -43,6 +44,7 @@ def person_update(id_person):
 @app.route('/person_edit', methods=['POST'])
 def person_edit():
     return view.set_person_edit()
+
 
 @app.route('/person_delete/<id_person>', methods=['GET'])
 def person_delete(id_person):
