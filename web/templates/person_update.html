@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="page-header">
+    <h1>Edit Form</h1>
+    <p>Edit your Name and Last Name:   </p>
+        <br>
+            <form action="/person_edit" method="post">
+                <input type="hidden" id="op" name="op" value="I">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup_id">ID</span>
+                    <input type="text" value="{{value.id_person}}" readonly onmousedown="return false;" class="form-control" name="id_person" aria-label="Sizing example input" aria-describedby="inputGroup_idt" autocomplete="off">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup_name">First name</span>
+                    <input type="text" value="{{value.name}}" class="form-control" name="first_name" aria-label="Sizing example input" aria-describedby="inputGroup_name" autocomplete="off">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup_lastName">Last Name</span>
+                    <input type="text" value="{{value.last_name}}" class="form-control" name="last_name" aria-label="Sizing example input" aria-describedby="inputGroup_lastName" autocomplete="off">
+                </div>
+                <br >
+                <input class="btn btn-primary" type="submit" name="form" value="Submit" />
+            </form>
+</div>
+{% endblock %}
